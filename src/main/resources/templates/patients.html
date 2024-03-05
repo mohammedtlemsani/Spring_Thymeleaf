@@ -3,24 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
-<h2>Patients</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Nom</th>
-        <th>prenom</th>
-        <th>Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="patient : ${patients}">
-        <td th:text="${patient.id}"></td>
-        <td th:text="${patient.nom}"></td>
-        <td th:text="${patient.prenom}"></td>
-        <td th:text="${patient.date}"></td>
-    </tbody>
+<div class="p-3 m-3">
+    <div class = "card">
+        <div class="card-header">
+            <h3>Patients</h3>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>prenom</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="patient : ${patients}">
+                    <td th:text="${patient.id}"></td>
+                    <td th:text="${patient.nom}"></td>
+                    <td th:text="${patient.prenom}"></td>
+                    <td th:text="${patient.date}"></td>
+                    <td><a class="btn btn-danger" th:href="@{/deletePatient(id=${patient.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+</div>
+    </div>
 </body>
 </html>

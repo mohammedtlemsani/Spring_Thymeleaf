@@ -14,9 +14,14 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
     @GetMapping(path = "/index")
-    public String index(Model model){
-        List<Patient> patients =patientRepository.findAll();
-        model.addAttribute("patients",patients);
+    public String index(Model model) {
+        List<Patient> patients = patientRepository.findAll();
+        model.addAttribute("patients", patients);
         return "patients";
+    }
+    @GetMapping(path = "/deletePatient")
+    public String delete(Long id){
+        patientRepository.deleteById(id);
+        return "redirect:/index";
     }
 }
