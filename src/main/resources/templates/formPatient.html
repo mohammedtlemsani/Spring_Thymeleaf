@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template1" >
+<head>
+    <meta charset="UTF-8">
+    <title>formPatient</title>
+</head>
+<body>
+<div class="m-3" layout:fragment="content1">
+    <form>
+        <div class="mb-3">
+            <label  class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" >
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Prenom</label>
+            <input type="text" class="form-control" id="prenom" >
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">date de naissance</label>
+            <input type="date" class="form-control" id="dateNaissance">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

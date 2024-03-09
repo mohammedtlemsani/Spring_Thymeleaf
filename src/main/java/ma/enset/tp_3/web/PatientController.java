@@ -33,4 +33,8 @@ public class PatientController {
         patientRepository.deleteById(id);
         return "redirect:/index?page="+page+"&keyword="+keyword;
     }
+    @GetMapping(path = "/formPatient")
+    public String formPatient(){
+        return "formPatient";
+    }
 }

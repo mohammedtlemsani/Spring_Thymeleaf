@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template1">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
+<div layout:fragment ="content1">
 <div class="p-3 m-3">
     <div class = "card">
         <div class="card-header">
             <h3>Patients</h3>
         </div>
         <div class="card-body">
-
                 <form class="form-check-inline m-1" th:action="@{/index}" >
                     <label>keyword</label>
                     <input type="text" name = "keyword" th:value="${keyword}"/>
@@ -46,5 +45,6 @@
             </div>
 </div>
     </div>
+</div>
 </body>
 </html>
