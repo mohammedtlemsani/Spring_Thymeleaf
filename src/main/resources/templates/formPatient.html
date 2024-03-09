@@ -6,20 +6,23 @@
 </head>
 <body>
 <div class="m-3" layout:fragment="content1">
-    <form>
+    <form  method="post" th:action="@{/save}">
         <div class="mb-3">
             <label  class="form-label">Nom</label>
-            <input type="text" class="form-control" id="nom" >
+            <input type="text" class="form-control" id="nom" name="nom" th:value="${patient.nom}">
+
+
+
         </div>
         <div class="mb-3">
             <label class="form-label">Prenom</label>
-            <input type="text" class="form-control" id="prenom" >
+            <input type="text" class="form-control" id="prenom" name="prenom" th:value="${patient.prenom}">
         </div>
         <div class="mb-3">
             <label  class="form-label">date de naissance</label>
-            <input type="date" class="form-control" id="dateNaissance">
+            <<input type="date" class="form-control" id="dateNaissance" name="date" th:value="${patient.date}">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
 </div>
 </body>

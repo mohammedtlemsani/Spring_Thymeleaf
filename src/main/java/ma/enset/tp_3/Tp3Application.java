@@ -18,11 +18,11 @@ public class Tp3Application {
     @Bean
     public CommandLineRunner start(PatientRepository patientRepository){
         return args -> {
-            Patient p1 = new Patient(null,"hamid","hamd",new Date());
+            /*Patient p1 = new Patient(null,"hamid","hamd",new Date());
             Patient p2 = new Patient(null,"zaid","mouadib",new Date());
             Patient p3 = new Patient(null,"soulaimane","chekaoui",new Date());
             patientRepository.save(p1);patientRepository.save(p2);patientRepository.save(p3);
             patientRepository.findAll().forEach(System.out::println);
-        };
+        */};
     }
 }
