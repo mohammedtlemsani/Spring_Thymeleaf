@@ -34,6 +34,7 @@
                     <td th:text="${patient.prenom}"></td>
                     <td th:text="${patient.date}"></td>
                     <td><a class="btn btn-danger" th:href="@{/deletePatient(id=${patient.id},keyword = ${keyword},page = ${currentPage})}">Delete</a></td>
+                    <td><a class="btn btn-success" th:href="@{/editPatient(id=${patient.id})}">Edit</a></td>
                 </tr>
                 </tbody>
             </table>
