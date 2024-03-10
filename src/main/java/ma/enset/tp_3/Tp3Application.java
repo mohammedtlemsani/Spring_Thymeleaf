@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
@@ -15,7 +17,7 @@ public class Tp3Application {
     public static void main(String[] args) {
         SpringApplication.run(Tp3Application.class, args);
     }
-    @Bean
+    //@Bean
     public CommandLineRunner start(PatientRepository patientRepository){
         return args -> {
             /*Patient p1 = new Patient(null,"hamid","hamd",new Date());
@@ -24,5 +26,10 @@ public class Tp3Application {
             patientRepository.save(p1);patientRepository.save(p2);patientRepository.save(p3);
             patientRepository.findAll().forEach(System.out::println);
         */};
+
     }
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    };
 }
