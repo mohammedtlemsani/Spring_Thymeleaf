@@ -32,26 +32,26 @@ public class PatientController {
         return "patients";
     }
     @GetMapping(path = "/admin/deletePatient")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String delete(Long id,int page,String keyword ){
         patientRepository.deleteById(id);
         return "redirect:/user/index?page="+page+"&keyword="+keyword;
     }
     @GetMapping(path = "/admin/formPatient")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String formPatient(Model model){
         model.addAttribute("patient",new Patient());
         return "formPatient";
     }
     @PostMapping(path = "/admin/save")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String save(Model model, @Valid Patient patient, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return "formPatient";
         patientRepository.save(patient);
         return "redirect:/index";
     }
     @GetMapping(path = "/admin/editPatient")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String editPatient(Model model,Long id){
         Patient patient = patientRepository.findById(id).orElse(null);
         model.addAttribute("patient",patient);
