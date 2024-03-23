@@ -48,7 +48,7 @@ public class PatientController {
     public String save(Model model, @Valid Patient patient, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return "formPatient";
         patientRepository.save(patient);
-        return "redirect:/index";
+        return "redirect:/user/index";
     }
     @GetMapping(path = "/admin/editPatient")
     @PreAuthorize("hasRole('ADMIN')")

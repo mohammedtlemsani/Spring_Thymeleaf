@@ -6,8 +6,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 import java.util.Date;
 
@@ -17,7 +20,7 @@ public class Tp3Application {
     public static void main(String[] args) {
         SpringApplication.run(Tp3Application.class, args);
     }
-    @Bean
+    //@Bean
     public CommandLineRunner start(PatientRepository patientRepository){
         return args -> {
             Patient p1 = new Patient(null,"hamid","hamd",new Date());
@@ -27,6 +30,19 @@ public class Tp3Application {
             patientRepository.findAll().forEach(System.out::println);
         };
 
+    }
+    @Bean
+    CommandLineRunner commandLineRunner(JdbcUserDetailsManager jdbcUserDetailsManager){
+    return args -> {
+        UserDetails u1 = jdbcUserDetailsManager.loadUserByUsername("hamid");
+        if(u1==null) {
+            jdbcUserDetailsManager.createUser(User.withUsername("hamid").password(passwordEncoder().encode("1234")).roles("USER").build());
+        }
+        UserDetails u2 = jdbcUserDetailsManager.loadUserByUsername("tlemsani");
+        if(u2==null) {
+            jdbcUserDetailsManager.createUser(User.withUsername("tlemsani").password(passwordEncoder().encode("1234")).roles("ADMIN", "USER").build());
+        }
+    };
     }
     @Bean
     PasswordEncoder passwordEncoder(){
