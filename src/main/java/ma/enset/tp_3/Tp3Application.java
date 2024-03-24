@@ -2,6 +2,7 @@ package ma.enset.tp_3;
 
 import ma.enset.tp_3.entities.Patient;
 import ma.enset.tp_3.repository.PatientRepository;
+import ma.enset.tp_3.security.service.AccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,7 +32,7 @@ public class Tp3Application {
         };
 
     }
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(JdbcUserDetailsManager jdbcUserDetailsManager){
     return args -> {
         UserDetails u1 = jdbcUserDetailsManager.loadUserByUsername("hamid");
@@ -43,6 +44,19 @@ public class Tp3Application {
             jdbcUserDetailsManager.createUser(User.withUsername("tlemsani").password(passwordEncoder().encode("1234")).roles("ADMIN", "USER").build());
         }
     };
+    }
+    //@Bean
+    CommandLineRunner commandLineRunnerUserDetails(AccountService accountService) {
+        return args -> {
+            accountService.addNewRole("USER");
+            accountService.addNewRole("ADMIN");
+            accountService.addNewUser("hamid","1234","1234");
+            accountService.addNewUser("tlemsani","1234","1234");
+            accountService.addRoleToUser("hamid","USER");
+            accountService.addRoleToUser("tlemsani","ADMIN");
+            accountService.addRoleToUser("tlemsani","USER");
+
+        };
     }
     @Bean
     PasswordEncoder passwordEncoder(){
