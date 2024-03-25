@@ -22,7 +22,6 @@ import javax.sql.DataSource;
 @AllArgsConstructor
 public class SecurityConfig {
     private UserDetailServiceImpl userDetailsServiceImpl;
-    @Autowired
     PasswordEncoder passwordEncoder;
     //@Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
@@ -40,9 +39,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .formLogin(Customizer.withDefaults())
-                .authorizeHttpRequests(ar->ar.requestMatchers("/deletePatient/**").hasRole("ADMIN"))
-                .authorizeHttpRequests(ar->ar.requestMatchers("/admin/**").hasRole("ADMIN"))
-                .authorizeHttpRequests(ar->ar.requestMatchers("/user/**").hasRole("USER"))
+                .authorizeHttpRequests(ar->ar.requestMatchers("/deletePatient/**").hasAuthority("ADMIN"))
+                .authorizeHttpRequests(ar->ar.requestMatchers("/admin/**").hasAuthority("ADMIN"))
+                .authorizeHttpRequests(ar->ar.requestMatchers("/user/**").hasAuthority("USER"))
                 .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
                 .userDetailsService(userDetailsServiceImpl)
                 .build();
