@@ -21,7 +21,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" th:href="@{/user/index}">Chercher</a></li>
-                        <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a class="dropdown-item" th:href="@{/admin/formPatient}">Ajouter</a></li>
+                        <li th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}"><a class="dropdown-item" th:href="@{/admin/formPatient}">Ajouter</a></li>
                     </ul>
                 </li>
             </ul>
